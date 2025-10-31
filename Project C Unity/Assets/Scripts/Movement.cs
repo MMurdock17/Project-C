@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     public float sprintSpeed = 14f;
     public float maxVelocityChange = 10f;
     public float jumpHeight = 5f;
+    public float airControl = 0.5f;
 
     private Vector2 input;
     private Rigidbody rb;
@@ -47,6 +48,19 @@ public class Movement : MonoBehaviour
             else if (input.magnitude > 0.5f)
             {
                 rb.AddForce(CalculateMovement(sprinting ? sprintSpeed : walkSpeed), ForceMode.VelocityChange);
+            }
+            else
+            {
+                var velocity1 = rb.linearVelocity;
+                velocity1 = new Vector3(velocity1.x * 0.2f * Time.fixedDeltaTime, velocity1.y, velocity1.z * 0.2f * Time.fixedDeltaTime);
+                rb.linearVelocity = velocity1;
+            }
+        }
+        else
+        {
+            if (input.magnitude > 0.5f)
+            {
+                rb.AddForce(CalculateMovement(sprinting ? sprintSpeed * airControl : walkSpeed * airControl), ForceMode.VelocityChange);
             }
             else
             {
