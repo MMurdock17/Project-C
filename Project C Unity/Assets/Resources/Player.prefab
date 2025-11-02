@@ -759,6 +759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78716a7cf089c77458fdb03bb13e5987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swayClamp: 0.09
+  smoothing: 3
 --- !u!4 &4130748647957447505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3c77ef8dc77f0d14689414711a424f23, type: 3}
