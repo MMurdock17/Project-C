@@ -601,8 +601,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285603094
+  m_fontColor: {r: 0.08580276, g: 0.112087876, b: 0.4415095, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -743,6 +743,7 @@ MonoBehaviour:
   damage: 25
   camera: {fileID: 8419020480968021752}
   fireRate: 10
+  hitVFX: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
 --- !u!4 &4130748647957447505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3c77ef8dc77f0d14689414711a424f23, type: 3}
