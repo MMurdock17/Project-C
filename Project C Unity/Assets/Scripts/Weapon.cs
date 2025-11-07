@@ -25,6 +25,11 @@ public class Weapon : MonoBehaviour
     public TextMeshProUGUI magText;
     public TextMeshProUGUI ammoText;
 
+    [Header("Animation")]
+
+    public Animation anim;
+    public AnimationClip reload;
+
     void Start()
     {
         magText.text = mag.ToString();
@@ -40,7 +45,7 @@ public class Weapon : MonoBehaviour
             nextFire -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && nextFire <= 0)
+        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && GetComponent<Animation>().isPlaying == false)
         {
             nextFire = 1 / fireRate;
             ammo--;
@@ -58,6 +63,8 @@ public class Weapon : MonoBehaviour
 
     void Reload()
     {
+        GetComponent<Animation>().Play(reload.name);
+
         if (mag > 0)
         {
             mag--;
