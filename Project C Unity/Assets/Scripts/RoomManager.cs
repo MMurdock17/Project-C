@@ -9,11 +9,35 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public Transform spawnPoint;
     public GameObject roomCam;
 
+    public GameObject nameUI;
+    public GameObject connectingUI;
+
+    private string username = "unnamed";
+
     
     void Awake()
     {
         instance = this;
     }
+
+    public void ChangeUsername(string name)
+    {
+        username = name;
+    }
+
+    public void JoinRoomButtonPressed()
+    {
+        Debug.Log("Connecting...");
+
+        PhotonNetwork.ConnectUsingSettings();
+
+        nameUI.SetActive(false);
+        connectingUI.SetActive(true);
+    }
+
+
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +81,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         GameObject spawnPlayer = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
         spawnPlayer.GetComponent<PlayerSetup>().IsLocalPlayer();
         spawnPlayer.GetComponent<Health>().isLocalPlayer = true;
+        spawnPlayer.GetComponent<PhotonView>().RPC("SetUsername", RpcTarget.All, username);
     }
 
 }
