@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using Photon.Pun.UtilityScripts;
 
 public class PlayerSetup : MonoBehaviour
 {
@@ -22,5 +23,4 @@ public class PlayerSetup : MonoBehaviour
 
         usernameText.text = username;
     }
-
 }

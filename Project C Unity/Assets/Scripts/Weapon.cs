@@ -130,8 +130,12 @@ public class Weapon : MonoBehaviour
 
             if (hit.transform.gameObject.GetComponent<Health>())
             {
-                if (damage > hit.transform.gameObject.GetComponent<Health>().health)
+                if (damage >= hit.transform.gameObject.GetComponent<Health>().health)
                 {
+
+                    RoomManager.instance.kills++;
+                    RoomManager.instance.SetHashes();
+
                     PhotonNetwork.LocalPlayer.AddScore(100);
                 }
 
