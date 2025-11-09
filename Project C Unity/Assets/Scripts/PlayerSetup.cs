@@ -1,11 +1,13 @@
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class PlayerSetup : MonoBehaviour
 {
     public Movement movement;
     public GameObject camera;
     public string username;
+    public TextMeshPro usernameText;
 
     public void IsLocalPlayer()
     {
@@ -17,6 +19,8 @@ public class PlayerSetup : MonoBehaviour
     public void SetUsername(string name)
     {
         username = name;
+
+        usernameText.text = username;
     }
 
 }

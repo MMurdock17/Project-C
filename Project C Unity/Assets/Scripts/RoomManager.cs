@@ -6,7 +6,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public static RoomManager instance;
 
     public GameObject player;
-    public Transform spawnPoint;
+    public Transform[] spawnPoints;
     public GameObject roomCam;
 
     public GameObject nameUI;
@@ -42,9 +42,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Connecting...");
-
-        PhotonNetwork.ConnectUsingSettings();
+        
     }
 
     public override void OnConnectedToMaster()
@@ -78,10 +76,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public void RespawnPlayer()
     {
+
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+
         GameObject spawnPlayer = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
         spawnPlayer.GetComponent<PlayerSetup>().IsLocalPlayer();
         spawnPlayer.GetComponent<Health>().isLocalPlayer = true;
-        spawnPlayer.GetComponent<PhotonView>().RPC("SetUsername", RpcTarget.All, username);
+        spawnPlayer.GetComponent<PhotonView>().RPC("SetUsername", RpcTarget.AllBuffered, username);
     }
 
 }
