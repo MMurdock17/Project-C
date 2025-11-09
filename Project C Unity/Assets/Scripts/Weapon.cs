@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using TMPro;
 
 public class Weapon : MonoBehaviour
@@ -129,6 +130,11 @@ public class Weapon : MonoBehaviour
 
             if (hit.transform.gameObject.GetComponent<Health>())
             {
+                if (damage > hit.transform.gameObject.GetComponent<Health>().health)
+                {
+                    PhotonNetwork.LocalPlayer.AddScore(100);
+                }
+
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
             }
         }

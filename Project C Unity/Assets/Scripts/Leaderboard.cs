@@ -3,6 +3,7 @@ using System.Linq;
 using Photon.Pun;
 using TMPro;
 using Photon.Pun.UtilityScripts;
+using Photon.Realtime;
 
 public class Leaderboard : MonoBehaviour
 {
