@@ -21,6 +21,10 @@ public class Weapon : MonoBehaviour
     public int ammo = 30;
     public int magAmmo = 30;
 
+    [Header("SFX")]
+    public int shootSFXIndex = 0;
+    public PlayerPhotonSoundManager playerPhotonSoundManager;
+
     [Header("UI")]
     
     public TextMeshProUGUI magText;
@@ -119,6 +123,8 @@ public class Weapon : MonoBehaviour
 
         recoiling = true;
         recovering = false;
+
+        playerPhotonSoundManager.PlayShootSFX(shootSFXIndex);
 
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
 
